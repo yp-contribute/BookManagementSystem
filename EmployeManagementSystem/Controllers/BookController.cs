@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLayer.Models;
+using BookManagementSystem.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookManagementSystem.Controllers
 {
@@ -6,15 +8,19 @@ namespace BookManagementSystem.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            BookService bookService = new BookService();
+            List<Book> books = bookService.GetAllBooks();
+            return View(books);
         }
 
 
-        [ActionName("FirstActionMethod")]
-        public string Index1()
-        {
-            return "First Action method";
-        }
+
+
+        //[ActionName("FirstActionMethod")]
+        //public string Index1()
+        //{
+        //    return "First Action method";
+        //}
 
 
     }
