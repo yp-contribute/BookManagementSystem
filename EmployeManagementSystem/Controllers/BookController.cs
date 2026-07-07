@@ -26,9 +26,39 @@ namespace BookManagementSystem.Controllers
 
         [HttpPost]
         public IActionResult AddBook(Book book)
-        { 
+        {
+            if (ModelState.IsValid) 
+            {
+                BookService bookService = new BookService();
+                int result = bookService.SaveBook(book);
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditBook(int id) 
+        {
             BookService bookService = new BookService();
-            bookService.SaveBook(book);
+            var book = bookService.GetBook(id);
+            return View(book);
+        }
+
+        [HttpPost]
+        public IActionResult EditBook(Book book)
+        {
+            BookService bookService = new BookService();
+            int result = bookService.updateBook(book);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteBook(int id)
+        {
+            BookService bookService = new BookService();
+            int result = bookService.deleteBook(id);
 
             return RedirectToAction("Index");
         }

@@ -4,20 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.DataAccessLayer.Models;
 
-public partial class CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext : DbContext
+public partial class BookContext : DbContext
 {
-    public CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext()
+    public BookContext()
     {
     }
 
-    public CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext(DbContextOptions<CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext> options)
+    public BookContext(DbContextOptions<BookContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<Book> Books { get; set; }
-
-    public virtual DbSet<Table> Tables { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -45,16 +43,6 @@ public partial class CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment
                 .HasMaxLength(50)
                 .HasColumnName("publisher");
         });
-
-        modelBuilder.Entity<Table>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Table__3214EC0788F49082");
-
-            entity.ToTable("Table");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-        });
-
         OnModelCreatingPartial(modelBuilder);
     }
 

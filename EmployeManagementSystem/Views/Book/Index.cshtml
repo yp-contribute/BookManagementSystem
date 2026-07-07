@@ -2,6 +2,7 @@
 @model List<Book>
 
 <a class=" btn btn-primary" asp-action="AddBook"> Add Book </a>
+<br />
 <div>
     <table class="table table-bordered">
         <thead>
@@ -26,8 +27,8 @@
                     <td>@item.Genre</td>
                     <td>@item.Publisher</td>
                     <td>@item.PublishDate</td>
-                    <td></td>
-                    <td></td>
+                    <td><a asp-route-id="@item.Id" asp-action="EditBook" asp-controller="Book" class="btn btn-info">Edit</a></td>
+                    <td><a asp-route-id="@item.Id" asp-action="DeleteBook" asp-controller="Book" class="btn btn-danger" onclick="return confirm('Do you really want to delete this record?')">Delete</a></td>
                 </tr>
             }
         </tbody>

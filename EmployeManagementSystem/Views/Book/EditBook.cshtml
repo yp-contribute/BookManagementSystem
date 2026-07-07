@@ -1,0 +1,43 @@
+﻿@using DataAccessLayer.Models;
+@model Book
+<h1>Edit Book Details</h1>
+<form method="post" asp-action="EditBook" asp-controller="Book">
+    <div>
+        <div>
+            <label asp-for="Id" class="form-label">Book ID</label>
+            <input type="text" asp-for="Id" readonly="readonly" class="form-control"/> 
+        </div>
+        <div>
+            <label asp-for="Name" class="form-label">Book Name</label>
+            <input type="text" asp-for="Name" class="form-control"/>
+        </div>
+        <div>
+            <label asp-for="Author" class="form-label">Author Name</label>
+            <input type="text" asp-for="Author" class="form-control"/>
+        </div>
+        <div>
+            <label asp-for="Genre" class="form-label">Genre</label>
+            @* <input asp-for="Genre" type="text" class="form-control"/> *@
+            <select asp-for="Genre" class="form-control">
+                <option value="">Select Genre</option>
+                <option value="Fiction"> Fiction</option>
+                <option value="Non-Fictional">Non-Fictional</option>
+                <option value="Technical">Technical</option>
+                <option value="Self-help">Self-Help</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Publisher" class="form-label">Publisher</label>
+            <input asp-for="Publisher" type="text" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="PublishDate" class="form-label"></label>
+            <input asp-for="PublishDate" type="text" class="form-control" />
+        </div>
+
+        <br />
+        <div>
+            <input type="submit" class="btn btn-primary" value="Confirm" />
+        </div>
+    </div>
+</form>
