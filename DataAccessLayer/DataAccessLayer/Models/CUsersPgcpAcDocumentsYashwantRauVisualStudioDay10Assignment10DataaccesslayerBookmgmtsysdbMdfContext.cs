@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccessLayer.Models;
+namespace DataAccessLayer.DataAccessLayer.Models;
 
-public partial class BookContext : DbContext
+public partial class CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext : DbContext
 {
-    public BookContext()
+    public CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext()
     {
     }
 
-    public BookContext(DbContextOptions<BookContext> options)
+    public CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext(DbContextOptions<CUsersPgcpAcDocumentsYashwantRauVisualStudioDay10Assignment10DataaccesslayerBookmgmtsysdbMdfContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<Book> Books { get; set; }
+
+    public virtual DbSet<Table> Tables { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -25,11 +27,10 @@ public partial class BookContext : DbContext
     {
         modelBuilder.Entity<Book>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Book__3214EC07D8E98B80");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07E61B1975");
 
             entity.ToTable("Book");
 
-            entity.Property(e => e.Id).UseIdentityColumn();
             entity.Property(e => e.Author)
                 .HasMaxLength(50)
                 .HasColumnName("author");
@@ -43,6 +44,15 @@ public partial class BookContext : DbContext
             entity.Property(e => e.Publisher)
                 .HasMaxLength(50)
                 .HasColumnName("publisher");
+        });
+
+        modelBuilder.Entity<Table>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Table__3214EC0788F49082");
+
+            entity.ToTable("Table");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         OnModelCreatingPartial(modelBuilder);

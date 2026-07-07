@@ -6,6 +6,11 @@ namespace BookManagementSystem.Controllers
 {
     public class BookController : Controller
     {
+        //[ActionName("FirstActionMethod")]
+        //public string Index1()
+        //{
+        //    return "First Action method";
+        //}
         public IActionResult Index()
         {
             BookService bookService = new BookService();
@@ -13,15 +18,20 @@ namespace BookManagementSystem.Controllers
             return View(books);
         }
 
+        [HttpGet]
+        public IActionResult AddBook()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult AddBook(Book book)
+        { 
+            BookService bookService = new BookService();
+            bookService.SaveBook(book);
 
-
-        //[ActionName("FirstActionMethod")]
-        //public string Index1()
-        //{
-        //    return "First Action method";
-        //}
-
+            return RedirectToAction("Index");
+        }
 
     }
 }
